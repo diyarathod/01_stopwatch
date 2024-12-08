@@ -17,11 +17,11 @@ function updateDis() {
 
 function start() {
     if (!running) {
-        startTime = Date.now() - elapsedTime;
+        startTime = Date.now() - elapsedTime; // Record start time
         timer = setInterval(() => {
-            elapsedTime = Date.now() - startTime;
-            updateDis();
-        },2);
+            elapsedTime = Date.now() - startTime; // Update elapsed time
+            updateDis(); // Update display
+        }, 1000); // Update every 1 second
         running = true;
         startBtn.disabled = true;
         stopBtn.disabled = false;
@@ -30,20 +30,18 @@ function start() {
 
 function stop() {
     if (running) {
-        clearInterval(timer);
-        elapsedTime += Date.now() - startTime;
+        clearInterval(timer); // Stop the timer
         running = false;
         startBtn.disabled = false;
         stopBtn.disabled = true;
-        
     }
 }
 
 function reset() {
-    clearInterval(timer);
+    clearInterval(timer); // Stop the timer
     running = false;
-    elapsedTime = 0;
-    updateDis();
+    elapsedTime = 0; // Reset elapsed time
+    updateDis(); // Update display
     startBtn.disabled = false;
     stopBtn.disabled = true;
 }
